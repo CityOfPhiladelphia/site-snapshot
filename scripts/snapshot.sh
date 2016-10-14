@@ -2,8 +2,9 @@
 
 SCRIPT_DIR=$(dirname $0)
 DOMAIN=$1
+START_PATH=$2
 
-wget --mirror --page-requisites -e robots=off -X /wp-json/oembed/ --no-check-certificate --output-file=wgetlog.txt https://$DOMAIN/
+wget --mirror --page-requisites -e robots=off -X /wp-json/oembed/ --no-check-certificate --output-file=wgetlog.txt https://${DOMAIN}/${START_PATH}
 $SCRIPT_DIR/remove_querystrings.sh $DOMAIN
 $SCRIPT_DIR/rename_duplicate_ext.sh $DOMAIN
 $SCRIPT_DIR/rename_dotless_files.sh $DOMAIN
